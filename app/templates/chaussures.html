@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chaussures</title>
+</head>
+<body>
+    <h1>Liste des chaussures les plus chères</h1>
+    <ul>
+        {% for chaussure in chaussures %}
+            <li>{{ chaussure.nom }} - {{ chaussure.prix }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
