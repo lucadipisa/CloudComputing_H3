@@ -9,7 +9,6 @@ db_config = {
     'user': 'root',
     'password': 'root',
     'database': 'projet_db',
-    'port': 3307,
 }
 
 # Fonction utilitaire pour établir une connexion à la base de données

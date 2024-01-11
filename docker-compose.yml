@@ -1,6 +1,7 @@
 version: '3'
 
 services:
+
   flask_app:
     build:
       context: ./app
@@ -8,6 +9,9 @@ services:
       - "5000:5000"
     depends_on:
       - mysql_db
+    networks:
+      - elk
+      - my_net
 
   mysql_db:
     build:
@@ -19,3 +23,27 @@ services:
       MYSQL_ROOT_PASSWORD: root
     ports:
       - "3307:3306"
+    networks:
+      - elk 
+      - my_net  
+
+  elasticsearch-backend:
+    build:
+      context: ./elasticsearch
+    environment:
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+    healthcheck:
+      test: ["CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    networks:
+      - elk
+
+networks:
+  my-net:
+    driver: bridge
+  elk:
+    driver: bridge
