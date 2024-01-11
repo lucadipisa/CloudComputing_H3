@@ -1,0 +1,10 @@
+# Emplacement du fichier de logs de Logstash
+path.logs: /path/to/logstash/logs
+
+# Niveau de verbosité des logs (options : "fatal", "error", "warn", "info", "debug", "trace")
+log.level: info
+
+# Paramètres pour activer la surveillance à chaud des fichiers de configuration
+config.reload.automatic: true
+config.reload.interval: 3s
+config.reload.os_signal: SIGHUP
